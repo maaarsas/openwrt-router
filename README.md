@@ -3,26 +3,32 @@
 OpenWrt config for a TP-Link Archer AX23, kept as code.
 
 `config/` holds the router's `/etc/config/` files. Wi-Fi names and passwords
-are `@placeholders@`; real values live in the git-ignored `secrets.env`.
+are `@placeholders@`; real values live on the router in `/etc/openwrt-router.env`.
 
 ## Install
 
 Connect to the router with a LAN cable (applying Wi-Fi changes drops Wi-Fi
 clients), then on the router (`ssh root@192.168.1.1`):
 
-    apk add git git-http
-    git clone https://github.com/maaarsas/openwrt-router.git
-    cd openwrt-router
-    cp secrets.env.example secrets.env
-    vi secrets.env    # fill in Wi-Fi names and passwords; no | or & in values
-    ./install.sh
+    wget -O- https://github.com/maaarsas/openwrt-router/archive/refs/heads/main.tar.gz | tar -xz -C /tmp
+    cp /tmp/openwrt-router-main/secrets.env.example /etc/openwrt-router.env
+    echo /etc/openwrt-router.env >> /etc/sysupgrade.conf
+    vi /etc/openwrt-router.env
+    /tmp/openwrt-router-main/install.sh
+
+In `/etc/openwrt-router.env`, quote values with spaces (`WIFI_SSID='My Home'`).
+Don't use `'`, `|` or `&` in values.
+
+The repo is unpacked to `/tmp` (RAM) because the router's flash is too small
+for git. Adding the env file to `/etc/sysupgrade.conf` keeps it across firmware
+upgrades.
 
 ## Update
 
 After pushing changes to GitHub, on the router:
 
-    cd openwrt-router
-    git pull
-    ./install.sh
+    rm -rf /tmp/openwrt-router-main
+    wget -O- https://github.com/maaarsas/openwrt-router/archive/refs/heads/main.tar.gz | tar -xz -C /tmp
+    /tmp/openwrt-router-main/install.sh
 
 Change settings here, not in LuCI — `install.sh` overwrites `/etc/config`.

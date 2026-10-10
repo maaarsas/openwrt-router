@@ -3,7 +3,7 @@
 
 REPO=$(cd -- "$(dirname -- "$0")" && pwd)
 
-. "$REPO/secrets.env"
+. /etc/openwrt-router.env
 
 for f in "$REPO"/config/*; do
   sed -e "s|@wifi_ssid@|$WIFI_SSID|" -e "s|@wifi_key@|$WIFI_KEY|" \
