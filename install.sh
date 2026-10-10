@@ -10,6 +10,8 @@ for f in "$REPO"/config/*; do
   uci -c "$REPO/config" show "$(basename "$f")" >/dev/null || exit 1
 done
 
+apk update && apk add $(cat "$REPO/packages") || exit 1
+
 for f in "$REPO"/config/*; do
   sed -e "s|@wifi_ssid@|$WIFI_SSID|" -e "s|@wifi_key@|$WIFI_KEY|" \
       -e "s|@iot_ssid@|$IOT_SSID|" -e "s|@iot_key@|$IOT_KEY|" \

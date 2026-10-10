@@ -4,6 +4,7 @@ OpenWrt config for a TP-Link Archer AX23, kept as code.
 
 `config/` holds the router's `/etc/config/` files. Wi-Fi names and passwords
 are `@placeholders@`; real values live on the router in `/etc/openwrt-router.env`.
+`packages` lists extra packages that `install.sh` installs.
 
 ## Install
 

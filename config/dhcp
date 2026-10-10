@@ -20,6 +20,10 @@ config dnsmasq
 	option ednspacket_max '1232'
 	option filter_aaaa '0'
 	option filter_a '0'
+	option noresolv '1'
+	list server '127.0.0.1#5053'
+	list server '127.0.0.1#5054'
+	list server '/pool.ntp.org/1.1.1.1'
 
 config dhcp 'lan'
 	option interface 'lan'
