@@ -23,6 +23,10 @@ The repo is unpacked to `/tmp` (RAM) because the router's flash is too small
 for git. Adding the env file to `/etc/sysupgrade.conf` keeps it across firmware
 upgrades.
 
+After install the router moves to `192.168.10.1`, so the ISP modem's
+`192.168.1.x` network doesn't clash with the LAN. Reconnect the cable (or
+renew DHCP) and use `ssh root@192.168.10.1` from then on.
+
 ## Update
 
 After pushing changes to GitHub, on the router:
