@@ -7,8 +7,11 @@ are `@placeholders@`; real values live on the router in `/etc/openwrt-router.env
 
 ## Install
 
-Connect to the router with a LAN cable (applying Wi-Fi changes drops Wi-Fi
-clients), then on the router (`ssh root@192.168.1.1`):
+Connect to the router with a LAN cable, then: 
+
+    ssh root@192.168.1.1
+
+After connecting to the router, execute these commands:
 
     passwd
     wget -O- https://github.com/maaarsas/openwrt-router/archive/refs/heads/main.tar.gz | tar -xz -C /tmp
