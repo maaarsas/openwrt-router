@@ -22,6 +22,7 @@ config wifi-iface 'iot'
 	option ssid '@iot_ssid@'
 	option encryption 'psk2'
 	option key '@iot_key@'
+	option isolate '1'
 
 config wifi-device 'radio1'
 	option type 'mac80211'

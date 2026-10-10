@@ -10,6 +10,7 @@ are `@placeholders@`; real values live on the router in `/etc/openwrt-router.env
 Connect to the router with a LAN cable (applying Wi-Fi changes drops Wi-Fi
 clients), then on the router (`ssh root@192.168.1.1`):
 
+    passwd
     wget -O- https://github.com/maaarsas/openwrt-router/archive/refs/heads/main.tar.gz | tar -xz -C /tmp
     cp /tmp/openwrt-router-main/secrets.env.example /etc/openwrt-router.env
     echo /etc/openwrt-router.env >> /etc/sysupgrade.conf
@@ -18,6 +19,9 @@ clients), then on the router (`ssh root@192.168.1.1`):
 
 In `/etc/openwrt-router.env`, quote values with spaces (`WIFI_SSID='My Home'`).
 Don't use `'`, `|` or `&` in values.
+
+`passwd` sets the root password for ssh and the web dashboard. A fresh or reset
+router has none. It lives in `/etc/shadow`, so `install.sh` doesn't touch it.
 
 The repo is unpacked to `/tmp` (RAM) because the router's flash is too small
 for git. Adding the env file to `/etc/sysupgrade.conf` keeps it across firmware
