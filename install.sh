@@ -5,7 +5,9 @@ REPO=$(cd -- "$(dirname -- "$0")" && pwd)
 
 . /etc/openwrt-router.env
 
-uci -c "$REPO/config" show >/dev/null || exit 1
+for f in "$REPO"/config/*; do
+  uci -c "$REPO/config" show "$(basename "$f")" >/dev/null || exit 1
+done
 
 for f in "$REPO"/config/*; do
   sed -e "s|@wifi_ssid@|$WIFI_SSID|" -e "s|@wifi_key@|$WIFI_KEY|" \
