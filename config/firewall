@@ -48,7 +48,7 @@ config rule
 config rule
 	option name		Allow-IoT-DNS
 	option src		iot
-	option proto		tcp udp
+	option proto		'tcp udp'
 	option dest_port	53
 	option target		ACCEPT
 
