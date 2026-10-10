@@ -38,4 +38,3 @@ After pushing changes to GitHub, on the router:
     wget -O- https://github.com/maaarsas/openwrt-router/archive/refs/heads/main.tar.gz | tar -xz -C /tmp
     /tmp/openwrt-router-main/install.sh
 
-Change settings here, not in LuCI — `install.sh` overwrites `/etc/config`.
