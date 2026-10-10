@@ -4,6 +4,7 @@
 REPO=$(cd -- "$(dirname -- "$0")" && pwd)
 
 . /etc/openwrt-router.env
+: "${WIFI_SSID:?}" "${WIFI_KEY:?}" "${IOT_SSID:?}" "${IOT_KEY:?}"
 
 for f in "$REPO"/config/*; do
   uci -c "$REPO/config" show "$(basename "$f")" >/dev/null || exit 1

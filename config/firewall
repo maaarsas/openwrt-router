@@ -3,8 +3,6 @@ config defaults
 	option input		REJECT
 	option output		ACCEPT
 	option forward		REJECT
-# Uncomment this line to disable ipv6 rules
-#	option disable_ipv6	1
 
 config zone
 	option name		lan
@@ -52,8 +50,6 @@ config rule
 	option dest_port	53
 	option target		ACCEPT
 
-# We need to accept udp packets on port 68,
-# see https://dev.openwrt.org/ticket/4108
 config rule
 	option name		Allow-DHCP-Renew
 	option src		wan
@@ -62,7 +58,6 @@ config rule
 	option target		ACCEPT
 	option family		ipv4
 
-# Allow IPv4 ping
 config rule
 	option name		Allow-Ping
 	option src		wan
@@ -71,15 +66,6 @@ config rule
 	option family		ipv4
 	option target		ACCEPT
 
-config rule
-	option name		Allow-IGMP
-	option src		wan
-	option proto		igmp
-	option family		ipv4
-	option target		ACCEPT
-
-# Allow DHCPv6 replies
-# see https://github.com/openwrt/openwrt/issues/5066
 config rule
 	option name		Allow-DHCPv6
 	option src		wan
@@ -100,7 +86,6 @@ config rule
 	option family		ipv6
 	option target		ACCEPT
 
-# Allow essential incoming IPv6 ICMP traffic
 config rule
 	option name		Allow-ICMPv6-Input
 	option src		wan
@@ -120,7 +105,6 @@ config rule
 	option family		ipv6
 	option target		ACCEPT
 
-# Allow essential forwarded IPv6 ICMP traffic
 config rule
 	option name		Allow-ICMPv6-Forward
 	option src		wan

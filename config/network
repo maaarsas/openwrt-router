@@ -31,8 +31,10 @@ config interface 'wan'
 	option device 'wan'
 	option proto 'dhcp'
 	option dns '1.1.1.1'
+	option peerdns '0'
 
 config interface 'wan6'
 	option device 'wan'
 	option proto 'dhcpv6'
+	option peerdns '0'
 

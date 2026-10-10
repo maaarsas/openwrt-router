@@ -16,12 +16,13 @@ After connecting to the router, execute these commands:
     passwd
     wget -O- https://github.com/maaarsas/openwrt-router/archive/refs/heads/main.tar.gz | tar -xz -C /tmp
     cp /tmp/openwrt-router-main/secrets.env.example /etc/openwrt-router.env
+    chmod 600 /etc/openwrt-router.env
     echo /etc/openwrt-router.env >> /etc/sysupgrade.conf
     vi /etc/openwrt-router.env
     /tmp/openwrt-router-main/install.sh
 
 In `/etc/openwrt-router.env`, quote values with spaces (`WIFI_SSID='My Home'`).
-Don't use `'`, `|` or `&` in values.
+Don't use `'`, `|`, `&` or `\` in values.
 
 `passwd` sets the root password for ssh and the web dashboard. A fresh or reset
 router has none. It lives in `/etc/shadow`, so `install.sh` doesn't touch it.
